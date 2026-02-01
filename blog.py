@@ -1,19 +1,16 @@
-from flask import Flask, render_template,flash,redirect,logging,url_for,request,session
-from flask_mysqldb import MySQL
-from wtforms import Form,StringField,TextAreaField,PasswordField,validators
-from wtforms.validators import DataRequired, Email
-from passlib.hash import sha256_crypt
-from functools import wraps
-from flask_wtf import FlaskForm
-from wtforms import TextAreaField, FileField, SubmitField
-from wtforms.validators import DataRequired
-from werkzeug.utils import secure_filename
 import os
-from MySQLdb.cursors import DictCursor
 import pymysql
 pymysql.install_as_MySQLdb()
 
-
+from flask import Flask, render_template, flash, redirect, url_for, session, request
+from flask_mysqldb import MySQL
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators, FileField, SubmitField
+from wtforms.validators import DataRequired, Email
+from flask_wtf import FlaskForm
+from passlib.hash import sha256_crypt
+from functools import wraps
+from werkzeug.utils import secure_filename
+import MySQLdb.cursors
 
 def login_required(f):
     @wraps(f)
