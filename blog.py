@@ -58,13 +58,13 @@ class LoginForm(Form):
 
 app = Flask(__name__)
 
-app.config["MYSQL_HOST"] = "mysql-289e9598-eralpyayalikk-4fe5.h.aivencloud.com"
-app.config["MYSQL_USER"] = "avnadmin"
+app.config["MYSQL_HOST"] = os.getenv("MYSQL_HOST")
+app.config["MYSQL_USER"] = os.getenv("MYSQL_USER")
 app.config["MYSQL_PASSWORD"] = os.getenv("MYSQL_PASSWORD")
-app.config["MYSQL_DB"] = "defaultdb"
-app.config["MYSQL_PORT"] = 26850
-# SSL için şunu ekle (Aiven için en basit hali):
-app.config["MYSQL_SSL_MODE"] = "REQUIRED"
+app.config["MYSQL_DB"] = os.getenv("MYSQL_DB")
+app.config["MYSQL_PORT"] = int(os.getenv("MYSQL_PORT", 26850))
+app.config["MYSQL_CURSORCLASS"] = "DictCursor" 
+app.config["MYSQL_CUSTOM_OPTIONS"] = {"ssl": {"ca": "/etc/ssl/certs/ca-certificates.crt"}}
 
 mysql=MySQL(app)
 
@@ -398,5 +398,6 @@ class ProfileUpdateForm(FlaskForm):
 
 
 
-if __name__=="__main__":
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
