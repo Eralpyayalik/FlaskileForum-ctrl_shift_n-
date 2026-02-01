@@ -58,13 +58,13 @@ class LoginForm(Form):
 
 app = Flask(__name__)
 
-app.config["MYSQL_HOST"] = os.getenv("MYSQL_HOST")
-app.config["MYSQL_USER"] = os.getenv("MYSQL_USER")
-app.config["MYSQL_PASSWORD"] = os.getenv("MYSQL_PASSWORD")
-app.config["MYSQL_DB"] = os.getenv("MYSQL_DB")
-app.config["MYSQL_PORT"] = int(os.getenv("MYSQL_PORT", 26850))
-app.config["MYSQL_CURSORCLASS"] = "DictCursor" # Zaten vardır muhtemelen
-app.config["MYSQL_CUSTOM_OPTIONS"] = {"ssl": {"ca": "/etc/ssl/certs/ca-certificates.crt"}}
+app.config["MYSQL_HOST"] = "mysql-289e9598-eralpyayalikk-4fe5.h.aivencloud.com"
+app.config["MYSQL_USER"] = "avnadmin"
+app.config["MYSQL_PASSWORD"] = "AVNS_hG58TwM77PFReskocjL"
+app.config["MYSQL_DB"] = "defaultdb"
+app.config["MYSQL_PORT"] = 26850
+# SSL için şunu ekle (Aiven için en basit hali):
+app.config["MYSQL_SSL_MODE"] = "REQUIRED"
 
 mysql=MySQL(app)
 
