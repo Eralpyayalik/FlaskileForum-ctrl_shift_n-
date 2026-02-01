@@ -60,7 +60,7 @@ app = Flask(__name__)
 
 app.config["MYSQL_HOST"] = "mysql-289e9598-eralpyayalikk-4fe5.h.aivencloud.com"
 app.config["MYSQL_USER"] = "avnadmin"
-app.config["MYSQL_PASSWORD"] = "AVNS_hG58TwM77PFReskocjL"
+app.config["MYSQL_PASSWORD"] = os.getenv("MYSQL_PASSWORD")
 app.config["MYSQL_DB"] = "defaultdb"
 app.config["MYSQL_PORT"] = 26850
 # SSL için şunu ekle (Aiven için en basit hali):
