@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
+  <div class="container">
+<a class="navbar-brand fw-bold text-uppercase" href="/">
+  <i class="fas fa-user-secret text-warning"></i> ctrl_shift_<span class="text-warning">N</span>
+</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link px-3" href="/about"><i class="fas fa-info-circle mr-1"></i> Hakkımızda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="/articles"><i class="fas fa-book-open mr-1"></i> Makaleler</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto align-items-center">
+        {% if session["logged_in"] %}
+          
+          
+          {% if session["is_admin"] == 1 %}
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-warning btn-sm mx-2 px-3 text-warning" href="/admin/dashboard">
+              <i class="fas fa-user-shield"></i> Admin Paneli
+            </a>
+          </li>
+          {% endif %}
+
+          <li class="nav-item">
+            <a class="nav-link px-3" href="/dashboard"><i class="fas fa-tachometer-alt"></i> Panel</a>
+          </li>
+
+          <li class="nav-item dropdown ml-2">
+            <a class="nav-link dropdown-toggle btn btn-primary text-white px-4 rounded-pill" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user-circle"></i> {{ session["username"] }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow border-0 mt-2" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('profile', username=session['username']) }}">
+                <i class="fas fa-id-card fa-sm fa-fw mr-2 text-gray-400"></i> Profilim
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item text-danger" href="/logout">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-danger"></i> Güvenli Çıkış
+              </a>
+            </div>
+          </li>
+
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link px-3" href="/login">Giriş Yap</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-warning rounded-pill px-4 ml-2 font-weight-bold" href="/register">Kayıt Ol</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

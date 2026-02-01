@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="d-flex align-items-center justify-content-between mb-4 p-4 bg-light rounded shadow-sm border-left border-danger" style="border-left-width: 5px !important;">
+        <div>
+            <h2 class="fw-bold mb-0">Kontrol Paneli</h2>
+            <p class="text-muted mb-0">Hoş geldin şef, <strong>{{session["username"]}}</strong>. Ortalığı karıştırmaya hazır mısın?</p>
+        </div>
+        <div>
+            <a href="/addarticle" class="btn btn-danger btn-lg rounded-pill shadow-sm">
+                <i class="fas fa-plus-circle mr-2"></i> Yeni Konu Oluştur
+            </a>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    {% if articles %}
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th scope="col" class="pl-4">#ID</th>
+                            <th scope="col">Başlık</th>
+                            <th scope="col">Yazar</th>
+                            <th scope="col">Tarih</th>
+                            <th scope="col" class="text-center">Aksiyonlar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for article in articles %}
+                        <tr>
+                            <th scope="row" class="pl-4 align-middle text-muted">{{article.id}}</th>
+                            <td class="align-middle">
+                                <a href="/article/{{article.id}}" class="text-dark font-weight-bold text-decoration-none">
+                                    <i class="far fa-file-alt text-danger mr-2"></i>{{article.title}}
+                                </a>
+                            </td>
+                            <td class="align-middle"><span class="badge badge-light px-3 py-2">{{article.author}}</span></td>
+                            <td class="align-middle small text-muted">{{article.created_date}}</td>
+                            <td class="align-middle text-right pr-4">
+                                <div class="btn-group" role="group">
+                                    <a href="/edit/{{article.id}}" class="btn btn-outline-primary btn-sm mx-1 rounded">
+                                        <i class="fas fa-edit"></i> Kurcala
+                                    </a>
+                                    <a href="/delete/{{article.id}}" class="btn btn-outline-danger btn-sm mx-1 rounded">
+                                        <i class="fas fa-trash-alt"></i> Yok Et
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fas fa-folder-open fa-4x text-muted mb-3"></i>
+        <h4 class="text-muted">Buralar ıssız kalmış...</h4>
+        <p>Henüz bir makale/mevzu paylaşmamışsın. İlk bombayı patlatmaya ne dersin?</p>
+        <a href="/addarticle" class="btn btn-danger mt-2 px-4">Hemen Bi' Şeyler Karala</a>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    /* Tablo hover efekti */
+    .table-hover tbody tr:hover {
+        background-color: rgba(220, 53, 69, 0.03);
+        transition: 0.3s;
+    }
+    .btn-group .btn {
+        transition: all 0.2s;
+    }
+    .btn-group .btn:hover {
+        transform: translateY(-2px);
+    }
+</style>
+{% endblock body %}

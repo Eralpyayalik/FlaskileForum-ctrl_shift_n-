@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-dark text-white d-flex align-items-center justify-content-between p-4">
+                    <h4 class="mb-0 text-uppercase tracking-wider">
+                        <i class="fas fa-edit text-danger mr-2"></i> Konu Güncelle
+                    </h4>
+                    <span class="badge badge-danger p-2">Editör Modu</span>
+                </div>
+
+                <div class="card-body p-4">
+                    {% from "includes/formhelpers.html" import render_field %}
+
+                    <form method="post">
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-dark h5">Konu Başlığı</label>
+                            {{ render_field(form.title, class="form-control form-control-lg border-danger-subtle", placeholder="Başlığı sarsıcı bir şey yap...") }}
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-dark h5">İçerik</label>
+                            <div class="shadow-sm">
+                                {{ render_field(form.content, class="form-control") }}
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="d-flex justify-content-between">
+                            <a href="/dashboard" class="btn btn-outline-secondary px-4 shadow-sm">
+                                <i class="fas fa-undo mr-1"></i> Vazgeç, Elleme
+                            </a>
+                            <button type="submit" class="btn btn-danger btn-lg px-5 shadow-sm">
+                                <i class="fas fa-sync-alt mr-2"></i> Konuyu Güncelle
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <p class="text-center mt-3 text-muted small">
+                <i class="fas fa-info-circle"></i> Düzenleme yaptıktan sonra "Konuyu Düzenle" butonuna basmayı unutma, yoksa emekler yalan olur.
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Input odaklanma efektleri */
+    .form-control-lg:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.1);
+    }
+    /* CKEditor konteyner düzenlemesi */
+    .cke_chrome {
+        border-radius: 8px !important;
+        overflow: hidden;
+    }
+</style>
+{% endblock body %}

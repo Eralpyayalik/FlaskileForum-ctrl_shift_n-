@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-dark text-white p-4">
+                    <h4 class="mb-0"><i class="fas fa-user-edit me-2"></i> Kimlik Bilgilerini Güncelle</h4>
+                    <small class="text-muted">Burada yaptığın değişiklikler tüm topluluğa görünecek.</small>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-dark">
+                                <i class="fas fa-pen-nib text-danger me-1"></i> Biyografi
+                            </label>
+                            {{ form.bio(class="form-control border-danger-subtle", rows="5", placeholder="Kendinden bahset ama çok da ciddiye alma...") }}
+                            <div class="form-text text-muted small">Maksimum 2-3 cümle salla, kimse roman okumaya gelmedi.</div>
+                        </div>
+
+                        <div class="mb-4 p-3 bg-light rounded border">
+                            <label class="form-label fw-bold text-dark d-block">
+                                <i class="fas fa-image text-danger me-1"></i> Yeni Avatar Seç
+                            </label>
+                            {{ form.avatar(class="form-control-file w-100") }}
+                            <div class="form-text mt-2 small text-danger italic">
+                                <strong>Not:</strong> Şekilli şukullu bir şey seç de karizman çizilmesin.
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="/profile/{{ session['username'] }}" class="text-muted text-decoration-none">
+                                <i class="fas fa-times me-1"></i> Vazgeç
+                            </a>
+                            <button type="submit" class="btn btn-danger btn-lg px-5 shadow-sm">
+                                <i class="fas fa-save me-2"></i> Kaydet ve Fırla
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Form odaklanma efekti */
+    .form-control:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.25 dark;
+    }
+    .form-control-file {
+        padding: 10px;
+        background: white;
+        border-radius: 5px;
+        border: 1px dashed #ced4da;
+    }
+</style>
+{% endblock %}

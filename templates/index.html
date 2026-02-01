@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="p-5 mb-4 bg-dark text-white rounded-3 shadow-lg text-center border-bottom border-danger" style="border-width: 5px !important;">
+        <div class="container-fluid py-5">
+            <h1 class="display-1 fw-bold">ctrl_shift_<span class="text-danger">N</span></h1>
+            <p class="fs-4 mt-3">Mantığın bittiği, geyiğin başladığı son durak.</p>
+            <p class="text-muted small italic">"Eğer buradaysan muhtemelen yapman gereken daha önemli işlerin vardır."</p>
+            <hr class="my-4 border-secondary">
+            
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="/articles" class="btn btn-danger btn-lg px-5 gap-3 fw-bold shadow">Kansere Tıkla (Makaleler)</a>
+                {% if not session["logged_in"] %}
+                <a href="/register" class="btn btn-outline-light btn-lg px-5">Bu Bataklığa Katıl</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="feature col text-center">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center text-danger fs-2 mb-3">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h3 class="fs-4">Beyin Hücresi Kaybı</h3>
+            <p>Okuduğunuz her satır, IQ seviyenizde kalıcı hasarlar bırakabilir. Biz uyardık, gerisi size kalmış.</p>
+        </div>
+        <div class="feature col text-center">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center text-danger fs-2 mb-3">
+                <i class="fas fa-clock"></i>
+            </div>
+            <h3 class="fs-4">Vakit Kaybı Garantisi</h3>
+            <p>Sınavına mı çalışman lazım? Projen mi yetişecek? Hepsini boşver, gel burada dün yediği lahmacunu anlatan adamı oku.</p>
+        </div>
+        <div class="feature col text-center">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center text-danger fs-2 mb-3">
+                <i class="fas fa-mask"></i>
+            </div>
+            <h3 class="fs-4">Anonim Ama Yakın</h3>
+            <p>Kim olduğunu bilmiyoruz ama ne kadar boş yapabileceğini tahmin edebiliyoruz. Rahat ol, burası güvenli bölge.</p>
+        </div>
+    </div>
+
+    <div class="alert alert-secondary text-center border-0 shadow-sm p-4">
+        <h5 class="mb-0 text-muted">⚠️ <strong>UYARI:</strong> Sitede gezerken aniden gülme, ağlama veya "Benim burada ne işim var?" deme hissi normaldir.</h5>
+    </div>
+</div>
+
+<style>
+    .feature-icon {
+        width: 4rem;
+        height: 4rem;
+        border-radius: .75rem;
+        background-color: rgba(220, 53, 69, 0.1);
+    }
+    .display-1 { letter-spacing: -2px; }
+    body { background-color: #f8f9fa; }
+</style>
+{% endblock body %}
