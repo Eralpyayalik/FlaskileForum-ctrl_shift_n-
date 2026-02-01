@@ -56,6 +56,7 @@ class LoginForm(Form):
     password = PasswordField("Parola")
 
 app = Flask(__name__)
+app.secret_key = "12345"
 
 app.config["MYSQL_HOST"] = os.getenv("MYSQL_HOST")
 app.config["MYSQL_USER"] = os.getenv("MYSQL_USER")
