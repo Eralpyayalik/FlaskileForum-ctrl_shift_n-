@@ -10,6 +10,8 @@ from wtforms.validators import DataRequired
 from werkzeug.utils import secure_filename
 import os
 from MySQLdb.cursors import DictCursor
+import pymysql
+pymysql.install_as_MySQLdb()
 
 
 
@@ -64,7 +66,7 @@ app.config["MYSQL_PASSWORD"] = os.getenv("MYSQL_PASSWORD")
 app.config["MYSQL_DB"] = os.getenv("MYSQL_DB")
 app.config["MYSQL_PORT"] = int(os.getenv("MYSQL_PORT", 26850))
 app.config["MYSQL_CURSORCLASS"] = "DictCursor" 
-app.config["MYSQL_CUSTOM_OPTIONS"] = {"ssl": {"ca": "/etc/ssl/certs/ca-certificates.crt"}}
+app.config["MYSQL_CUSTOM_OPTIONS"] = {"ssl": {"fake_flag": True}}
 
 mysql=MySQL(app)
 
